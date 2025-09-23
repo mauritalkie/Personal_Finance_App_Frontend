@@ -3,7 +3,7 @@
 
      <div>filters
 
-        <label for="paymentType">Payment Type:</label>
+        <label for="paymentType">Expense Type:</label>
         <select id="paymentType" name="paymentType">
             <option value="all">All</option>
             <option value="creditCard">Credit Card</option>
@@ -60,6 +60,6 @@
 </template>
 
 <script setup lang="ts">
-    import ExpensesForm from '../components/ExpensesForm.vue';
-    import ModalExpenseDelete from '../components/ModalExpenseDelete.vue';
+    import ExpensesForm from '../components/expenses/ExpensesForm.vue';
+    import ModalExpenseDelete from '../components/expenses/ModalExpenseDelete.vue';
 </script>
