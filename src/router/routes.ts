@@ -6,6 +6,7 @@ import Payments from "../views/Payments.vue";
 const router = createRouter ({
     history: createWebHistory(),
     routes: [
+        {path: '/', redirect: '/login'},
         {path:'/login', component: Login},
         {path: '/expenses', component: Expenses},
         {path: '/payments', component: Payments}
