@@ -62,4 +62,14 @@
 <script setup lang="ts">
     import ExpensesForm from '../components/expenses/ExpensesForm.vue';
     import ModalExpenseDelete from '../components/expenses/ModalExpenseDelete.vue';
+    import { onMounted } from 'vue';
+    import { getExpenses } from '../services/expenses.service';
+    import { getExpensesTypes } from '../services/expenses-types.service';
+
+    onMounted(async () => {
+        const expenses = await getExpenses(1); // yeah, hardcoded user ID
+        const expenses_types = await getExpensesTypes(1);
+        console.log(expenses);
+        console.log(expenses_types);
+    });
 </script>
