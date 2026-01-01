@@ -68,8 +68,6 @@
 
     onMounted(async () => {
         const expenses = await getExpenses(1); // yeah, hardcoded user ID
-        const expenses_types = await getExpensesTypes(1);
         console.log(expenses);
-        console.log(expenses_types);
     });
 </script>
