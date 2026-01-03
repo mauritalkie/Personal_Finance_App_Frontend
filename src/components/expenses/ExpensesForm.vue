@@ -53,6 +53,7 @@
             !form.value.expense_date
         ) {
             alert("Please fill all fields");
+            return;
         }
 
         try {
@@ -66,7 +67,7 @@
             form.value.expense_date = '';
         }
         catch (err: any) {
-            error.value = err.response?.data?.detail ?? "Error al iniciar sesión";
+            error.value = err.response?.data?.detail ?? "Something went wrong with Expense creation";
         }
     }
 
