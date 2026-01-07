@@ -4,11 +4,11 @@ export interface ExpenseDetailResponse {
     expense_type_id: number,
     concept: string,
     amount: number,
-    expense_date: Date,
+    expense_date: string,
     expense_id: number,
     user_id: number,
-    created_at: Date,
-    updated_at: Date,
+    created_at: string,
+    updated_at: string,
     expense_type: string
 };
 

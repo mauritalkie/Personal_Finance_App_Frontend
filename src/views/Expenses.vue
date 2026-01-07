@@ -22,34 +22,29 @@
     
     <div>Expenses Grid</div>
     <table>
-        <tr>
-            <th>Concept</th>
-            <th>Amount</th>
-            <th>Payment Type</th>
-            <th>Payment Date</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>Groceries</td>
-            <td>$150.00</td>
-            <td>Credit Card</td>
-            <td>2024-06-01</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Utilities</td>
-            <td>$75.00</td>
-            <td>Debit Card</td>
-            <td>2024-06-03</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Rent</td>
-            <td>$1200.00</td>
-            <td>Bank Transfer</td>
-            <td>2024-06-05</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr> 
+        <thead>
+            <tr>
+                <th>Concept</th>
+                <th>Amount</th>
+                <th>Expense Type</th>
+                <th>Expense Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr v-for="expense in expenses" :key="expense.expense_id">
+                <td>{{ expense.concept }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.expense_type }}</td>
+                <td>{{ expense.expense_date }}</td>
+                <!-- TODO: buttons for edit and delete -->
+            </tr>
+
+            <tr v-if="expenses.length === 0">
+                <td colspan="5">Expenses not found</td>
+            </tr>
+        </tbody>
     </table>
 
     <button>new expense</button>
@@ -62,12 +57,14 @@
 <script setup lang="ts">
     import ExpensesForm from '../components/expenses/ExpensesForm.vue';
     import ModalExpenseDelete from '../components/expenses/ModalExpenseDelete.vue';
-    import { onMounted } from 'vue';
-    import { getExpenses } from '../services/expenses.service';
+    import { onMounted, ref } from 'vue';
+    import { ExpenseDetailResponse, getExpenses } from '../services/expenses.service';
     import { getExpensesTypes } from '../services/expenses-types.service';
 
+    const expenses = ref<ExpenseDetailResponse[]>([]);
+
     onMounted(async () => {
-        const expenses = await getExpenses(1); // yeah, hardcoded user ID
-        console.log(expenses);
+        expenses.value = await getExpenses(1); // yeah, hardcoded user ID
+        console.log(expenses.value);
     });
 </script>
