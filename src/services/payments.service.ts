@@ -1,6 +1,6 @@
 import api from "./api.service";
 
-export interface PaymentTypeResponse {
+export interface PaymentResponse {
     amount: number
     saving: number
     housing: number
@@ -29,12 +29,12 @@ export interface PaymentForm {
     payment_date: Date
 };
 
-export async function getPayments(userId: number): Promise<PaymentTypeResponse[]> {
-    const { data } = await api.get<PaymentTypeResponse[]>(`payments/?user_id=${userId}`);
+export async function getPayments(userId: number): Promise<PaymentResponse[]> {
+    const { data } = await api.get<PaymentResponse[]>(`payments/?user_id=${userId}`);
     return data;
 }
 
-export async function createPayment(payload: PaymentCreate): Promise<PaymentTypeResponse> {
-    const { data } = await api.post<PaymentTypeResponse>('payments', payload);
+export async function createPayment(payload: PaymentCreate): Promise<PaymentResponse> {
+    const { data } = await api.post<PaymentResponse>('payments', payload);
     return data;
 }

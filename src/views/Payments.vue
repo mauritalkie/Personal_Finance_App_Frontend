@@ -22,34 +22,29 @@
 
      <div>Payments Grid</div>
      <table>
-        <tr>
-            <th>Concept</th>
-            <th>Amount</th>
-            <th>Payment Type</th>
-            <th>Payment Date</th>
-            <th>Action</th>
-        </tr>
-        <tr>
-            <td>Groceries</td>
-            <td>$150.00</td>
-            <td>Credit Card</td>
-            <td>2024-06-01</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Utilities</td>
-            <td>$75.00</td>
-            <td>Debit Card</td>
-            <td>2024-06-03</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr>
-        <tr>
-            <td>Rent</td>
-            <td>$1200.00</td>
-            <td>Bank Transfer</td>
-            <td>2024-06-05</td>
-            <td><button>Edit</button> <button>Delete</button></td>
-        </tr> 
+        <thead>
+            <tr>
+                <th>Concept</th>
+                <th>Amount</th>
+                <th>Saving</th>
+                <th>Housing</th>
+                <th>Personal</th>
+                <th>Payment Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr v-for="payment in payments" :key="payment.payment_id">
+                <td>{{ payment.concept }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.saving }}</td>
+                <td>{{ payment.housing }}</td>
+                <td>{{ payment.personal }}</td>
+                <td>{{ payment.payment_date }}</td>
+                <!-- TODO: buttons for edit and delete -->
+            </tr>
+        </tbody>
     </table>
 
     <button>new payment</button>
@@ -62,4 +57,16 @@
 <script setup lang="ts">
     import PaymentsForm from '../components/payments/PaymentsForm.vue';
     import ModalPaymentDelete from '../components/payments/ModalPaymentDelete.vue';
+    import { onMounted, ref } from 'vue';
+    import { getPayments, PaymentResponse } from '../services/payments.service';
+
+    onMounted(async () => {
+        payments.value = await getPayments(1); // hardcoded user id by now
+        console.log(payments.value);
+    });
+
+    // TODO: format data such as amount and date
+    // TODO: filters and figure out how to pass nulleable query params through services
+    const payments = ref<PaymentResponse[]>([]);
+    
 </script>
