@@ -39,7 +39,7 @@
             await login(username.value, password.value);
             console.log("Success!!");
 
-            router.push({path: '/expenses'})
+            router.push({path: '/savings'})
         }
         catch (err: any) {
             error.value = err.response?.data?.detail ?? "Error al iniciar sesión";
