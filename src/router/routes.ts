@@ -8,10 +8,10 @@ const router = createRouter ({
     history: createWebHistory(),
     routes: [
         {path: '/', redirect: '/login'},
-        {path:'/login', component: Login},
-        {path: '/expenses', component: Expenses},
-        {path: '/payments', component: Payments},
-        {path: '/savings', component: Savings}
+        {path:'/login', name: 'login', component: Login},
+        {path: '/expenses', name: 'expenses', component: Expenses},
+        {path: '/payments', name: 'payments', component: Payments},
+        {path: '/savings', name: 'savings', component: Savings}
     ]
 });
 

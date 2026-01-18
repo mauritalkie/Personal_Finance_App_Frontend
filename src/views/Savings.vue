@@ -1,4 +1,5 @@
 <template>
+    <Navbar></Navbar>
     <div>Savings</div>
     <table>
         <thead>
@@ -22,11 +23,12 @@
 <script setup lang="ts">
     import { onMounted, ref } from 'vue';
     import { getSavings, SavingsResponse } from '../services/savings.service';
+    import Navbar from '../components/Navbar.vue';
 
     const savings = ref<SavingsResponse>();
 
     onMounted(async () => {
         savings.value = await getSavings(1); // hardcoded by now
         console.log(savings.value);
-    })
+    });
 </script>

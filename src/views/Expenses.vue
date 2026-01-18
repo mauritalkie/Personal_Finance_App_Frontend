@@ -1,4 +1,5 @@
 <template>
+    <Navbar></Navbar>
     Expenses Page!
 
      <div>filters
@@ -59,7 +60,7 @@
     import ModalExpenseDelete from '../components/expenses/ModalExpenseDelete.vue';
     import { onMounted, ref } from 'vue';
     import { ExpenseDetailResponse, getExpenses } from '../services/expenses.service';
-    import { getExpensesTypes } from '../services/expenses-types.service';
+    import Navbar from '../components/Navbar.vue';
 
     const expenses = ref<ExpenseDetailResponse[]>([]);
 

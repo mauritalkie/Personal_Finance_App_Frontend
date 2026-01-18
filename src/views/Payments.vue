@@ -1,4 +1,5 @@
 <template>
+    <Navbar></Navbar>
     Payments Page!
 
     <div>filters
@@ -59,6 +60,7 @@
     import ModalPaymentDelete from '../components/payments/ModalPaymentDelete.vue';
     import { onMounted, ref } from 'vue';
     import { getPayments, PaymentResponse } from '../services/payments.service';
+    import Navbar from '../components/Navbar.vue';
 
     onMounted(async () => {
         payments.value = await getPayments(1); // hardcoded user id by now
